@@ -11,9 +11,9 @@
         <div v-if="items.length > 0">
           <header>{{items[itemNum-1].question}}</header>
           <ul>
-            <li v-for="(vm, index) in items[itemNum-1].answers" :key="index" @click="choosedScore(vm.answer_score)">
-              <span >{{vm.answer_name}}</span>
-              <span>({{vm.answer_score}}分)</span>
+            <li v-for="(vm, index) in items[itemNum-1].answers" :key="index" @click="choosedScore(vm.answer_score, index)">
+              <span :class="[choosedNum === index ? 'choosed': '' ]">{{vm.answer_name}}</span>
+              <span :class="[choosedNum === index ? 'choosed': '' ]">({{vm.answer_score}}分)</span>
             </li>
           </ul>
           <button class="btn" v-if="itemNum < items.length" @click="nextItem()">下一题</button>
@@ -33,19 +33,22 @@ export default {
     return {
       score: 0,
       choosed: null,
+      choosedNum: null
     }
   },
   methods: {
     ...mapActions([
       'addNum'
     ]),
-    choosedScore(score) {
+    choosedScore(score, index) {
       this.choosed = !this.choosed;
+      this.choosedNum = index;
       this.score = score;
     },
     nextItem() {
+      this.choosedNum = null
       if(this.choosed !== null) {
-        this.choosed === null;
+        this.choosed = null;
         this.addNum(this.score);
       } else {
         alert('选择答案，please！')
@@ -53,7 +56,7 @@ export default {
     },
     submit() {
       if(this.choosed !== null) {
-        this.choosed === null;
+        this.choosed = null;
         this.addNum(this.score);
         this.$router.push('score')
       } else {
@@ -71,5 +74,8 @@ $btnbgc: #ffd900;
 .btn {
   color: $btncolor;
   background-color: $btnbgc;
+}
+.choosed {
+  color: $btnbgc
 }
 </style>
