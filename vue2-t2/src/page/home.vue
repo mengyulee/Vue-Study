@@ -6,7 +6,10 @@
 <script>
 import itemCompontent  from "../components/itemComponent";
 export default {
-    components: {itemCompontent}
+    components: {itemCompontent},
+    create() {
+        this.$store.state.score = 0;
+    }
 }
 </script>
 

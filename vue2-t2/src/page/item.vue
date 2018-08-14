@@ -8,6 +8,9 @@ import itemComponent  from "../components/itemComponent";
 export default {
     components: {
         itemComponent
+    },
+    create() {
+        this.$store.state.itemNum = 1;
     }
 }
 </script>

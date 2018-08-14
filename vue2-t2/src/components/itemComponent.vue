@@ -20,20 +20,29 @@
           <button class="btn" v-else @click="submit()">提交</button>
         </div>
       </section>
+      <tips-component v-bind:tipsInfo="tipsInfo"></tips-component>
     </div>
   </div>
 </template>
 <script>
+import tipsComponent from './tips'
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'itemCompontent',
   props: ['fatherComponent'],
   computed: mapState(['level','items','itemNum']),
+  components: {tipsComponent},
   data() {
     return {
       score: 0,
       choosed: null,
-      choosedNum: null
+      choosedNum: null,
+      tipsInfo: {
+        show: false,
+        title: '错误信息',
+        content: '还没有选择答案。'
+      }
+      
     }
   },
   methods: {
@@ -51,7 +60,7 @@ export default {
         this.choosed = null;
         this.addNum(this.score);
       } else {
-        alert('选择答案，please！')
+        this.tipsInfo.show = true;
       }
     },
     submit() {
@@ -60,7 +69,7 @@ export default {
         this.addNum(this.score);
         this.$router.push('score')
       } else {
-        alert('选择答案，please！')
+        this.tipsInfo.show = true;
       }
       
     }

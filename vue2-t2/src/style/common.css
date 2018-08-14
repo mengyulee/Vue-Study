@@ -114,3 +114,13 @@ body {
 .show {
   display: block;
 }
+.btn {
+  display: inline-block;
+  background-color: #ffae00;
+  width: 4rem;
+  height: 1.4rem;
+  color: #fff;
+  line-height: 1.4rem;
+  font-size: .8rem;
+  border-radius: .3rem;
+}
