@@ -8,7 +8,9 @@ import './config/rem'
 import './style/common.css'
 
 
+
 Vue.use(VueRouter)
+
 // Vue.config.productionTip = false
 const router = new VueRouter({
   routes

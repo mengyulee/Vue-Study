@@ -7,7 +7,7 @@
             <div class="scoreTip">
                 <span v-if="scoreAll < 4">{{scoreTip[0]}}</span>
                 <span v-if="scoreAll >= 4">{{scoreTip[1]}}</span>
-            </div>
+            </div>    
         </div>
     </div>
 
