@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app">
+		<div v-for="(vo, index) in list">{{vo.name}}
+			<input type="checkbox" name="" id="" v-model="checkedData[index]">
+		</div>
+		<span>全选</span>
+		<input type="checkbox" name="all" id="all" @click="selectedAll()">
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#app',
+			data: {
+				checkedData: [],
+				list: [{
+						name: 'li'
+					},
+					{
+						name: 'li'
+					},
+					{
+						name: 'li'
+					},
+					{
+						name: 'li'
+					},
+					{
+						name: 'li'
+					},
+					{
+						name: 'li'
+					}
+				],
+				checked: false
+			},
+			watch: {
+				checkedData: {
+					handler() {
+						if (this.list.length === this.checkedData.length) {
+							this.checked = true
+						} else {
+							this.checked = false
+						}
+					},
+					deep: true
+				}
+			},
+			methods: {
+				selectedAll() {
+					if (!this.checked) {
+						this.list.forEach(element => {
+							this.checkedData.push(element.name)
+						});
+					} else {
+						this.checkedData = []
+					}
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
